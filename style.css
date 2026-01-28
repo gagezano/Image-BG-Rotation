@@ -17,24 +17,224 @@ body {
 }
 
 .back-link {
-  position: sticky;
-  top: 0;
-  background: rgba(6, 6, 6, 0.95);
-  padding: 0.75rem 1.5rem;
-  display: flex;
-  justify-content: flex-start;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
   z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  max-height: 42px;
+  padding: 0.55rem 0.85rem;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease;
+}
+
+.back-link:hover {
+  background: rgba(255, 255, 255, 0.35);
 }
 
 .back-link a {
   color: #fff;
   text-decoration: none;
-  text-transform: uppercase;
-  font-size: 0.75rem;
   display: inline-flex;
   align-items: center;
+  gap: 0.35rem;
+}
+
+.back-link__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.back-link__arrow svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.back-link__logo {
+  height: 1.1rem;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Speed selector – same look as Animated Radial Gradient BG Combustion */
+.controls-mobile-wrap {
+  display: contents;
+}
+
+@media (max-width: 768px) {
+  .controls-mobile-wrap {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    width: calc(100% - 2rem);
+    max-width: 320px;
+    background: rgba(0, 0, 0, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+  .controls-mobile-wrap .controls--speed {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+}
+
+.controls {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+  padding: 1rem 1.25rem;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+.controls__section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
+}
+
+.speed-dial-row {
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.speed-dial-row .color-dial {
+  flex: 1;
+  min-width: 0;
+}
+
+.speed-dial-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2px 0.35rem;
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.speed-select {
+  display: block;
+  min-width: 6rem;
+  margin-top: 0.35rem;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.controls--speed select:hover,
+.controls--speed select:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  outline: none;
+}
+
+.controls-restore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+}
+
+.controls-restore:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.controls-restore__text {
+  text-decoration: underline;
+}
+
+.controls-restore__icon {
+  display: inline-block;
+  font-size: 0.75rem;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.controls-restore:hover .controls-restore__icon {
+  animation: controls-restore-spin 2.5s linear infinite;
+}
+
+@keyframes controls-restore-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.color-dial {
+  flex: 1;
+  min-width: 0;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.color-dial::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.color-dial::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.color-dial-value {
+  flex: 0 0 2.5rem;
+  font-size: 0.7rem;
+  font-family: ui-monospace, monospace;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hero {
@@ -61,6 +261,8 @@ body {
   opacity: 0;
   transition: opacity 0.8s ease;
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .project-icon {
@@ -75,16 +277,20 @@ body {
   filter: invert(100%);
 }
 
+/* Drone / aerial nature shots from around the world */
 .hero__slide[data-label='Image 1'] {
-  background-color: #111;
+  background-color: #1a1a1a;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');
 }
 
 .hero__slide[data-label='Image 2'] {
-  background-color: #222;
+  background-color: #1a1a1a;
+  background-image: url('https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=1920&q=80');
 }
 
 .hero__slide[data-label='Image 3'] {
   background-color: #1a1a1a;
+  background-image: url('https://images.unsplash.com/photo-1469473398021-2f400b1d5794?w=1920&q=80');
 }
 
 .hero__slide.active {

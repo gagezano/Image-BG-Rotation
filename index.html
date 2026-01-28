@@ -8,11 +8,34 @@
 </head>
 <body>
   <header class="back-link">
-    <a href="../index.html">
-      <span class="back-link__icon">⟵</span>
-      Back to SelfHovering
+    <a href="../index.html" aria-label="Back to SelfHovering">
+      <span class="back-link__arrow" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </span>
+      <img src="../sa-icon.svg" alt="" class="back-link__logo" width="32" height="28" />
     </a>
   </header>
+
+  <div class="controls-mobile-wrap">
+    <div class="controls controls--speed" data-panel="speed" aria-label="Slideshow speed">
+      <label for="speed-dial" class="controls__section-label">Speed</label>
+      <div class="speed-dial-row">
+        <input type="range" id="speed-dial" class="color-dial" min="1500" max="6000" value="4000" step="100" aria-label="Speed" />
+        <span id="speed-value" class="color-dial-value">4s</span>
+      </div>
+      <div class="speed-dial-labels" aria-hidden="true">
+        <span>1.5s</span><span>2.5s</span><span>4s</span><span>5s</span><span>6s</span>
+      </div>
+      <select id="speed-select" class="speed-select" aria-label="Speed preset">
+        <option value="1500">Fast (1.5s)</option>
+        <option value="2500">Faster (2.5s)</option>
+        <option value="4000" selected>Medium (4s)</option>
+        <option value="5000">Slower (5s)</option>
+        <option value="6000">Slow (6s)</option>
+      </select>
+      <a href="#" id="speed-restore" class="controls-restore"><span class="controls-restore__icon" aria-hidden="true">↺</span><span class="controls-restore__text">Default</span></a>
+    </div>
+  </div>
 
   <main class="hero">
     <div class="hero__slides">
@@ -27,5 +50,13 @@
 
   </main>
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft' && !e.target.matches('input, textarea, select, [contenteditable="true"]')) {
+        e.preventDefault();
+        window.location.href = '../index.html';
+      }
+    });
+  </script>
 </body>
 </html>
