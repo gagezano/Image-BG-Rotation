@@ -71,6 +71,18 @@ body {
   background-position: center;
 }
 
+.project-icon {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  z-index: 5;
+}
+
+.project-icon img {
+  width: clamp(60px, 15vw, 110px);
+  filter: invert(100%);
+}
+
 .hero__slide[data-label='Image 1'] {
   background-color: #111;
 }
